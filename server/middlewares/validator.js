@@ -1,6 +1,8 @@
 const isNumber = number => !isNaN(number);
 const isString = str => typeof str === 'string';
 const isArray = arr => Array.isArray(arr);
+const isObjectId = str => /^[0-9a-fA-F]{24}$/.test(str);
+const isEmail = str => /.@./.test(str);
 
 const singleValidator = (obj, {param, type}) => {
 	switch (type) {
@@ -10,6 +12,10 @@ const singleValidator = (obj, {param, type}) => {
 			return isNumber(obj[param]);
 		case 'array':
 			return isArray(obj[param]);
+		case 'objectId':
+			return isObjectId(obj[param]);
+		case 'email':
+			return isEmail(obj[param]);
 		default:
 			return false;
 	}
