@@ -9,6 +9,7 @@ const deserializeUser = require(`${rootPrefix}/middlewares/deserializeUser`);
 router.route('/user')
 	.post(validator(validations.createUser), userCtl.createUser)
 	.get(deserializeUser, userCtl.getInformation)
+	.put(deserializeUser, userCtl.updateInformation)
 
 router.post('/user/login', validator(validations.login), userCtl.login);
 
