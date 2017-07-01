@@ -1,5 +1,7 @@
-const { create, findByEmail } = require('../../../repositories/user');
-const pickUser = require('../../../utils/pickUser');
+const { rootPrefix } = global;
+const { create, findByEmail } = require(`${rootPrefix}/repositories/user`);
+const pickUser = require(`${rootPrefix}/utils/pickUser`);
+const hash = require(`${rootPrefix}/utils/hash`);
 
 const createUser = (req, res) => {
 	const { fullname, email, password } = req.body;
@@ -10,7 +12,11 @@ const createUser = (req, res) => {
 				error: 'Email already exists'
 			});
 		}
-		create({ fullname, email, password })
+		hash(password)
+		.then(hashPassword => create({
+			fullname, email, 
+			password: hashPassword
+		}))
 		.then(user => {
 			return res.json({
 				user: pickUser(user)
