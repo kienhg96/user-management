@@ -1,0 +1,10 @@
+.dash-content-container {
+	margin-top: 70px;
+	transition: margin-left 0.2s;
+}
+
+@media screen and (min-width: 768px) {
+	.dash-content-container.toggle-left {
+		margin-left: 250px;
+	}
+}

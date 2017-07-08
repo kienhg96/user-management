@@ -1,0 +1,17 @@
+@media screen and (min-width: 768px) {
+	.UsersTableWrapper {
+		padding: 20px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.UsersTableWrapper {
+		padding: 5px;
+	}
+}
+
+.AddButtonWrapper {
+	position: fixed;
+	right: 45px;
+	bottom: 35px;
+}

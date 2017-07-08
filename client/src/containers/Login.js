@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Input from '../components/Input';
 import FormContent from '../components/FormContent';
 import Container from '../components/Container';
+import { login, getUser } from '../actions/user';
 
 class Login extends Component {
 	static navigationOptions() {
@@ -16,7 +17,7 @@ class Login extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			username: '',
+			email: '',
 			password: ''
 		}
 		this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -24,8 +25,8 @@ class Login extends Component {
 		this.handleLoginClick = this.handleLoginClick.bind(this);
 	}
 
-	handleUsernameChange(username) {
-		this.setState({ username });
+	handleUsernameChange(email) {
+		this.setState({ email });
 	}
 
 	handlePasswordChange(password) {
@@ -33,9 +34,11 @@ class Login extends Component {
 	}
 
 	handleLoginClick() {
-		console.log(this.state);
-		const { navigate } = this.props.navigation;
-		navigate('Home');
+		this.props.login(this.state);
+	}
+
+	componentDidMount() {
+		this.props.getUser();
 	}
 
 	render() {
@@ -92,4 +95,7 @@ const style = StyleSheet.create({
 	}
 });
 
-export default connect(state => ({}), {})(Login);
+export default connect(state => ({}), {
+	login,
+	getUser
+})(Login);
