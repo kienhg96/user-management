@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { TextInput, StyleSheet } from 'react-native';
 
-const Input = (props) => (
-	<TextInput {...props}
-		style={style.input}
-		underlineColorAndroid="transparent"
-	/>
-)
+class Input extends Component {
+	focus() {
+		this.input.focus();
+	}
+
+	render() {
+		return (
+			<TextInput {...this.props}
+				ref={input => this.input = input}
+				style={style.input}
+				underlineColorAndroid="transparent"
+			/>
+		);
+	}
+}
 
 const style = StyleSheet.create({
 	input: {

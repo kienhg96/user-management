@@ -3,10 +3,11 @@ import { NavigationActions } from 'react-navigation';
 import { 
 	loginAPI, 
 	getUserAPI,
-	updateUserAPI
+	updateUserAPI,
+	logoutAPI
 } from '../api';
 
-const { navigate } = NavigationActions;
+const { navigate, reset } = NavigationActions;
 
 const setUserAction = user => ({
 	type: SET_USER,
@@ -22,7 +23,12 @@ export const login = ({email, password}) => dispatch => {
 	loginAPI(email, password)
 	.then(user => {
 		dispatch(setUserAction(user));
-		dispatch(navigate({ routeName: 'Home' }));
+		dispatch(reset({
+			index: 0,
+			actions: [
+				navigate({ routeName: 'Home' })
+			]
+		}));
 	})
 	.catch(error => {
 		console.error(error);
@@ -45,7 +51,12 @@ export const getUser = () => dispatch => {
 	.then(user => {
 		if (user) {
 			dispatch(setUserAction(user));
-			dispatch(navigate({ routeName: 'Home' }));
+			dispatch(reset({
+				index: 0,
+				actions: [
+					navigate({ routeName: 'Home' })
+				]
+			}));
 		} else {
 			console.log('Not login');
 		}
@@ -63,4 +74,23 @@ export const changePassword = password => dispatch => {
 	.catch(error => {
 		console.error(error);
 	});
+}
+
+export const logout = () => dispatch => {
+	logoutAPI()
+	.then(() => {
+		dispatch(reset({
+			index: 0,
+			actions: [
+				navigate({ routeName: 'Login'})
+			]
+		}));
+	})
+	.catch(error => {
+		console.error(error);
+	});
+}
+
+export const signup = ({ email, fullname, password }) => dispatch => {
+
 }

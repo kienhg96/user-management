@@ -55,6 +55,8 @@ class Login extends Component {
 						<Input placeholder=" Email"
 							value={this.state.username}
 							onChangeText={this.handleUsernameChange}
+							returnKeyType="next"
+							onSubmitEditing={() => this.passwordInput.focus()}
 						/>
 					</FormContent>
 					<FormContent>
@@ -62,6 +64,7 @@ class Login extends Component {
 							value={this.state.password}
 							secureTextEntry
 							onChangeText={this.handlePasswordChange}
+							ref={input => this.passwordInput = input}
 						/>
 					</FormContent>
 					<FormContent>
@@ -90,8 +93,8 @@ const style = StyleSheet.create({
 		alignItems: 'center'
 	},
 	image: {
-		width: Dimensions.get('window').width * 0.35,
-		height: Dimensions.get('window').width * 0.35
+		width: 50,
+		height: 50
 	}
 });
 

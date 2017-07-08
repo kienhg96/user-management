@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
-const TOKEN_KEY = 'TOKEN_KEY';
+import { TOKEN_KEY } from '../constants/values';
 
 class Storage {
 	static TOKEN_KEY = 'TOKEN_KEY';
@@ -9,8 +9,11 @@ class Storage {
 	}
 
 	static setToken(token) {
-		console.log('Set token', token);
 		return AsyncStorage.setItem(TOKEN_KEY, token);
+	}
+
+	static removeToken() {
+		return AsyncStorage.removeItem(TOKEN_KEY);		
 	}
 }
 

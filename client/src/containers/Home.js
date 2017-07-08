@@ -4,18 +4,18 @@ import { connect } from 'react-redux';
 import { DrawerNavigator, DrawerItems } from 'react-navigation';
 import ViewInfo from './ViewInfo';
 import UpdateInfo from './UpdateInfo';
+import { logout } from '../actions/user';
 
-const Logout = ({navigation}) => (
+const Logout = ({navigation, logout}) => (
 	<View style={style.logoutWrapper}>
 		<Button title="Logout" 
 			color="#841584" 
-			onPress={() => {
-				console.log('Logout');
-				navigation.navigate('DrawerClose');
-			}}
+			onPress={() => logout()}
 		/>
 	</View>
 );
+
+const LogoutContainer = connect(s => ({}), { logout })(Logout);
 
 const Home = DrawerNavigator({
 	ViewInfo: {
@@ -29,7 +29,7 @@ const Home = DrawerNavigator({
 	contentComponent: props => (
 		<ScrollView>
 			<DrawerItems {...props} />
-			<Logout {...props}/>
+			<LogoutContainer {...props}/>
 		</ScrollView>
 	),
 	initialRouteName: 'ViewInfo'
