@@ -12,5 +12,6 @@ router.route('/user')
 	.put(deserializeUser, userCtl.updateInformation)
 
 router.post('/user/login', validator(validations.login), userCtl.login);
+router.get('/user/logout', deserializeUser, userCtl.logout);
 
 module.exports = router;

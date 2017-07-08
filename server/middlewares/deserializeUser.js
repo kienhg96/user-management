@@ -10,6 +10,9 @@ const deserializeUser = (req, res, next) => {
 	.then(loginToken => {
 		if (loginToken) {
 			req.user = loginToken.user;
+			req.logout = () => {
+				loginToken.remove();
+			}
 		}
 		next();
 	})
