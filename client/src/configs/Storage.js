@@ -2,8 +2,6 @@ import { AsyncStorage } from 'react-native';
 import { TOKEN_KEY } from '../constants/values';
 
 class Storage {
-	static TOKEN_KEY = 'TOKEN_KEY';
-
 	static getToken() {
 		return AsyncStorage.getItem(TOKEN_KEY);
 	}

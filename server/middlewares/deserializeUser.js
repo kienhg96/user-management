@@ -1,14 +1,14 @@
 const { rootPrefix } = global;
-const { findByToken } = require(`${rootPrefix}/repositories/loginToken`);
+const { findUserByToken } = require(`${rootPrefix}/repositories/loginToken`);
 
 const deserializeUser = (req, res, next) => {
 	const token = req.get('X-Auth-Token');
 	if (!token) {
 		return next();
 	}
-	findByToken(token, true)
+	findUserByToken(token, true)
 	.then(loginToken => {
-		if (loginToken) {
+		if (loginToken && loginToken.user) {
 			req.user = loginToken.user;
 			req.logout = () => {
 				loginToken.remove();

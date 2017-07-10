@@ -5,6 +5,8 @@ import PaperWithPadding from '../../components/PaperWithPadding';
 import Header from '../../components/Header';
 import TextInput from '../../components/TextInput';
 import FormControl from '../../components/FormControl';
+import { connect } from 'react-redux';
+import { login } from '../../actions/admin';
 
 class Login extends Component {
 	constructor(props) {
@@ -32,8 +34,7 @@ class Login extends Component {
 
 	handleSubmit(e) {
 		e.preventDefault();
-		console.log(this.state);
-		this.props.history.push('/');
+		this.props.login(this.state);
 	}
 
 	render() {
@@ -71,4 +72,6 @@ class Login extends Component {
 	}
 }
 
-export default Login;
+export default connect(s => ({}), {
+	login
+})(Login);

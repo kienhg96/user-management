@@ -1,5 +1,5 @@
 const logout = (req, res) => {
-	if (req.user) {
+	if (req.admin) {
 		req.logout();
 		return res.json({
 			message: 'Logged out'

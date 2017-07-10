@@ -44,7 +44,7 @@ class Dash extends Component {
 					(this.state.sidebarOpen ? " toggle-left" : "")}
 				>
 					<Switch>
-						<Route exact path="/" render={() => <Redirect to="/user" />} />
+						<Route exact path="/" render={() => <Redirect to="/login" />} />
 						<Route exact path="/add" component={AddUser} />
 						<Route exact path="/user" component={UserManagement} />
 						<Route exact path="/user/:id" render={({match}) => <EditUser userId={match.params.id} />} />

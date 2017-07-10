@@ -1,4 +1,5 @@
-const redis = require('../configs/redis');
+const { rootPrefix } = global;
+const redis = require(`${rootPrefix}/configs/redis`);
 const prefix = 'login';
 
 class LoginToken {

@@ -4,8 +4,10 @@ import {
 	loginAPI, 
 	getUserAPI,
 	updateUserAPI,
-	logoutAPI
+	logoutAPI,
+	signupAPI
 } from '../api';
+import alert from '../utils/alert';
 
 const { navigate, reset } = NavigationActions;
 
@@ -31,7 +33,7 @@ export const login = ({email, password}) => dispatch => {
 		}));
 	})
 	.catch(error => {
-		console.error(error);
+		alert('Login Failed', 'Email or password is incorrect');
 	});
 }
 
@@ -92,5 +94,17 @@ export const logout = () => dispatch => {
 }
 
 export const signup = ({ email, fullname, password }) => dispatch => {
-
+	signupAPI(email, fullname, password)
+	.then(() => {
+		dispatch(reset({
+			index: 0,
+			actions: [
+				navigate({ routeName: 'Login'})
+			]
+		}));
+	})
+	.catch(error => {
+		console.log(error);
+		alert('Signup failed', 'Email already exists');
+	});
 }

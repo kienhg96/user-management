@@ -2,7 +2,7 @@ const { rootPrefix } = global;
 const LoginToken = require(`${rootPrefix}/models/LoginToken`);
 const User = require(`${rootPrefix}/models/User`);
 
-const findByToken = (token, populate = false) => 
+const findUserByToken = (token, populate = false) => 
 new Promise((resolve, reject) => {
 	LoginToken.find({ token })
 	.then(loginToken => {
@@ -26,4 +26,4 @@ new Promise((resolve, reject) => {
 	});
 });
 
-module.exports = findByToken;
+module.exports = findUserByToken;

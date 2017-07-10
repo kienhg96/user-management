@@ -1,3 +1,4 @@
 exports.createSessionToken = require('./createSessionToken');
 exports.findById = require('./findById');
-exports.findByToken = require('./findByToken');
+exports.findUserByToken = require('./findUserByToken');
+exports.findAdminByToken = require('./findAdminByToken');

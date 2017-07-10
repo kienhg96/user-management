@@ -10,3 +10,12 @@ exports.login = [
 	v('email', 'email', 'Missing or invalid email'),
 	v('password', 'string', 'Missing password')
 ];
+
+exports.adminLogin = [
+	v('username', 'string', "Missing username"),
+	v('password', 'string', 'Missing password')
+];
+
+exports.removeUser = [
+	v('id', 'objectId', 'Missing or invalid id')
+];

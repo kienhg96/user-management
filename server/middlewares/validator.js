@@ -1,8 +1,11 @@
-const isNumber = number => !isNaN(number);
-const isString = str => typeof str === 'string';
-const isArray = arr => Array.isArray(arr);
-const isObjectId = str => /^[0-9a-fA-F]{24}$/.test(str);
-const isEmail = str => /.@./.test(str);
+const { rootPrefix } = global;
+const { 
+	isNumber,
+	isString,
+	isArray,
+	isObjectId,
+	isEmail
+} = require(`${rootPrefix}/utils/checkTypes`);
 
 const singleValidator = (obj, {param, type}) => {
 	switch (type) {

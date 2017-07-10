@@ -1,6 +1,7 @@
-const User = require('../../models/User');
+const { rootPrefix } = global;
+const User = require(`${rootPrefix}/models/User`);
 
-const create = ({fullname, email, password}) => 
+const create = ({ fullname, email, password }) => 
 new Promise((resolve, reject) => {
 	const user = new User({
 		fullname,

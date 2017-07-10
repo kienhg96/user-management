@@ -16,8 +16,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "start": "node ./bin/start"
+    "start": "node ./bin/start",
+    "createAdmin": "node ./bin/createAdmin"
   },
-  "author": "",
+  "author": "Hoang Kien",
   "license": "ISC"
 }

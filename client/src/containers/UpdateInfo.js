@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView, Button } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import { connect } from 'react-redux';
 import Container from '../components/Container';
 import Input from '../components/Input';
@@ -38,36 +38,34 @@ class UpdateInfo extends Component {
 	render() {
 		return (
 			<Container>
-				<ScrollView>
-					<Text style={style.label}>Fullname:</Text>
-					<FormContent>
-						<Input
-							value={this.state.fullname}
-							onChangeText={this.handleFullnameChange}
-						/>
-					</FormContent>
-					<FormContent>
-						<Button title="UPDATE" 
-							color="#841584" 
-							onPress={this.handleSubmit}
-						/>
-					</FormContent>
-					<Text style={style.title}>Change Password</Text>
-					<Text style={style.label}>New password:</Text>
-					<FormContent>
-						<Input
-							value={this.state.password}
-							onChangeText={this.handlePasswordChange}
-							secureTextEntry
-						/>
-					</FormContent>
-					<FormContent>
-						<Button title="CHANGE PASSWORD" 
-							color="#841584" 
-							onPress={this.handleChangePasswordSubmit}
-						/>
-					</FormContent>
-				</ScrollView>
+				<Text style={style.label}>Fullname:</Text>
+				<FormContent>
+					<Input
+						value={this.state.fullname}
+						onChangeText={this.handleFullnameChange}
+					/>
+				</FormContent>
+				<FormContent>
+					<Button title="UPDATE" 
+						color="#841584" 
+						onPress={this.handleSubmit}
+					/>
+				</FormContent>
+				<Text style={style.title}>Change Password</Text>
+				<Text style={style.label}>New password:</Text>
+				<FormContent>
+					<Input
+						value={this.state.password}
+						onChangeText={this.handlePasswordChange}
+						secureTextEntry
+					/>
+				</FormContent>
+				<FormContent>
+					<Button title="CHANGE PASSWORD" 
+						color="#841584" 
+						onPress={this.handleChangePasswordSubmit}
+					/>
+				</FormContent>
 			</Container>
 		);
 	}
