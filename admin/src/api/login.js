@@ -1,4 +1,5 @@
 import Storage from '../configs/Storage';
+import adminCvt from '../utils/adminCvt';
 
 const login = (username, password) => new Promise((resolve, reject) => {
 	const url = '/api/admin/login';
@@ -16,7 +17,7 @@ const login = (username, password) => new Promise((resolve, reject) => {
 		}
 		Storage.setToken(response.token)
 		.then(() => {
-			resolve(response.admin);
+			resolve(adminCvt(response.admin));
 		})
 		.catch(error => {
 			reject(error);

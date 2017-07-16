@@ -35,19 +35,19 @@ class Dash extends Component {
 	render() {
 		return (
 			<div>
-				<Navbar onLeftIconClick={this.toggleSidebar}/>
 				<Sidebar 
 					open={this.state.sidebarOpen}
 					onRequestClose={this.toggleSidebar}
 				/>
+				<Navbar onLeftIconClick={this.toggleSidebar}/>
 				<div className={"dash-content-container" + 
 					(this.state.sidebarOpen ? " toggle-left" : "")}
 				>
 					<Switch>
-						<Route exact path="/" render={() => <Redirect to="/login" />} />
+						<Route exact path="/" component={() => <Redirect to="/login" />} />
 						<Route exact path="/add" component={AddUser} />
 						<Route exact path="/user" component={UserManagement} />
-						<Route exact path="/user/:id" render={({match}) => <EditUser userId={match.params.id} />} />
+						<Route exact path="/user/:id" component={EditUser} />
 					</Switch>
 				</div>
 			</div>

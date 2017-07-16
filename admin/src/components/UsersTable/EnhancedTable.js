@@ -68,11 +68,16 @@ class EnhancedTable extends Component {
 		});
 	}
 
-	handleDeleteCorfim(value) {
+	handleDeleteCorfim(cofirm) {
 		this.setState({
 			cofirmDialog: false
 		});
-		console.log('Delete ?', value);
+		if (cofirm) {
+			this.props.onRequestDeleteUsers(this.state.selected);
+			this.setState({
+				selected: []
+			});
+		}
 	}
 
 	handleDeselectClick() {

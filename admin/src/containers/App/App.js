@@ -9,12 +9,16 @@ import { ConnectedRouter } from 'react-router-redux';
 import { MuiThemeProvider } from 'material-ui/styles';
 import { connect } from 'react-redux';
 import { getAdmin } from '../../actions/admin';
+import Message from '../Message';
 
 const App = () => (
-	<Switch>
-		<Route exact path="/login" component={Login} />
-		<Route path="*" component={Dash} />
-	</Switch>
+	<div>
+		<Message />
+		<Switch>
+			<Route exact path="/login" component={Login} />
+			<Route path="*" component={Dash} />
+		</Switch>
+	</div>
 );
 
 class Application extends Component {
@@ -32,7 +36,6 @@ class Application extends Component {
 		);
 	}
 }
-
 
 export default connect(state => ({}), {
 	getAdmin

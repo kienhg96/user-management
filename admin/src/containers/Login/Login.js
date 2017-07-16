@@ -7,6 +7,7 @@ import TextInput from '../../components/TextInput';
 import FormControl from '../../components/FormControl';
 import { connect } from 'react-redux';
 import { login } from '../../actions/admin';
+import { push } from 'react-router-redux';
 
 class Login extends Component {
 	constructor(props) {
@@ -18,6 +19,12 @@ class Login extends Component {
 		this.handleUsername = this.handleUsername.bind(this);
 		this.handlePassword = this.handlePassword.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	componentDidMount() {
+		if (this.props.admin.id) {
+			this.props.push('/user');
+		}
 	}
 
 	handleUsername(e) {
@@ -72,6 +79,9 @@ class Login extends Component {
 	}
 }
 
-export default connect(s => ({}), {
-	login
+export default connect(state => ({
+	admin: state.admin
+}), {
+	login,
+	push
 })(Login);

@@ -6,37 +6,17 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { Link } from 'react-router-dom';
 import getWindowWidth from '../../utils/getWindowWidth';
 import { responsiveWidth } from '../../constants/values';
+import './Sidebar.css';
 
 const styleSheet = createStyleSheet('Sidebar', {
 	paper: {
 		paddingTop: 70,
+		zIndex: 1000
+	},
+	modal: {
+		zIndex: 1000
 	}
 });
-
-const mailFolderListItems = (
-	<div>
-		<Link to="/" style={{
-			textDecoration: "none"
-		}}>
-			<ListItem button>
-				<ListItemIcon>
-					<InboxIcon />
-				</ListItemIcon>
-				<ListItemText primary="Home" />
-			</ListItem>
-		</Link>
-		<Link to="/login" style={{
-			textDecoration: "none"
-		}}>
-			<ListItem button>
-				<ListItemIcon>
-					<InboxIcon />
-				</ListItemIcon>
-				<ListItemText primary="Logout" />
-			</ListItem>
-		</Link>
-	</div>
-);
 
 const sideList = (
 	<div>
@@ -44,7 +24,14 @@ const sideList = (
 		    width: 250,
 		    flex: 'initial',
 		}} disablePadding>
-			{mailFolderListItems}
+			<Link to="/user" className="sidebar-item">
+				<ListItem button>
+					<ListItemIcon>
+						<InboxIcon />
+					</ListItemIcon>
+					<ListItemText primary="User Management" />
+				</ListItem>
+			</Link>
 		</List>
 	</div>
 );

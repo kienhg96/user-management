@@ -4,10 +4,12 @@ import classNames from 'classnames';
 import { IconButton, Toolbar, Typography } from 'material-ui';
 import { grey, pink } from 'material-ui/styles/colors';
 import {
-	FilterList as FilterListIcon,
+	ArrowForward as ArrowForwardIcon,
+	ArrowBack as ArrowBackIcon,
 	Delete as DeleteIcon,
 	ModeEdit as ModeEditIcon,
-	SelectAll as SelectAllIcon
+	SelectAll as SelectAllIcon,
+	Search as SearchIcon
 } from 'material-ui-icons';
 
 const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', {
@@ -31,54 +33,72 @@ const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', {
 
 const EnhancedTableToolbar = (props) => {
 	const { numSelected, classes, onDeleteClick, onDeselectClick, onEditClick } = props;
-	return (
-		<Toolbar
-			className={classNames(classes.root, {
-				[classes.highlight]: numSelected > 0,
-			})}
-		>
-			<div className={classes.title}>
-				{
-					numSelected > 0
-					? <Typography type="subheading" className={classes.white}>
-						{numSelected} user{numSelected > 1 && "s"} selected
-					</Typography>
-					: <Typography type="title">
-						User
-					</Typography>
-				}
-			</div>
-			<div className={classes.spacer} />
-			{numSelected === 0 &&
+	if (numSelected === 0) {
+		return (
+			<Toolbar
+				className={classNames(classes.root, {
+					[classes.highlight]: numSelected > 0,
+				})}
+			>
+				<div className={classes.title}>
+					<Typography type="title">User</Typography>
+				</div>
+				<div className={classes.spacer} />
 				<div>
 					<IconButton>
-						<FilterListIcon />
+						<ArrowBackIcon />
 					</IconButton>
 				</div>
-			}
-			{numSelected > 0 &&
+				<div className={classes.title}>
+					<Typography type="subheading">
+						page 1 of 25
+					</Typography>
+				</div>
+				<div>
+					<IconButton>
+						<ArrowForwardIcon />
+					</IconButton>
+				</div>
+				<div>
+					<IconButton>
+						<SearchIcon />
+					</IconButton>
+				</div>
+			</Toolbar>
+		);
+	} else {
+		return (
+			<Toolbar
+				className={classNames(classes.root, {
+					[classes.highlight]: numSelected > 0,
+				})}
+			>
+				<div className={classes.title}>
+					<Typography type="subheading" className={classes.white}>
+						{numSelected} user{numSelected > 1 && "s"} selected
+					</Typography>
+				</div>
+				<div className={classes.spacer} />
 				<div>
 					<IconButton className={classes.white} onClick={onDeselectClick}>
 						<SelectAllIcon />
 					</IconButton>
 				</div>
-			}
-			{numSelected === 1 &&
-				<div>
-					<IconButton className={classes.white} onClick={onEditClick}>
-						<ModeEditIcon />
-					</IconButton>
-				</div>
-			}
-			{numSelected > 0 &&
+				{numSelected === 1 &&
+					<div>
+						<IconButton className={classes.white} onClick={onEditClick}>
+							<ModeEditIcon />
+						</IconButton>
+					</div>
+				}
 				<div>
 					<IconButton className={classes.white} onClick={onDeleteClick}>
 						<DeleteIcon />
 					</IconButton>
 				</div>
-			}
-		</Toolbar>
-	);
+			</Toolbar>
+		);
+	}
 }
 
 export default withStyles(toolbarStyleSheet)(EnhancedTableToolbar);

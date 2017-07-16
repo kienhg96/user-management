@@ -1,20 +1,57 @@
-import { ADD_USER } from '../constants/actionTypes';
+import { SET_USERS } from '../constants/actionTypes';
 import { push } from 'react-router-redux';
+import {
+	createUserAPI,
+	loadUsersAPI,
+	updateUserAPI,
+	deleteUsersAPI
+} from '../api';
 
-const addUserAction = user => ({
-	type: ADD_USER,
-	user
+
+const setUsersAction = users => ({
+	type: SET_USERS,
+	users
 });
 
-function random32bit() {
-	let u = new Uint32Array(1);
-	window.crypto.getRandomValues(u);
-	let str = u[0].toString(16).toUpperCase();
-	return '00000000'.slice(str.length) + str;
+export const loadUsers = page => (dispatch, getState) => {
+	if (!page) {
+		page = getState().users.info.page;
+	}
+	loadUsersAPI(page)
+	.then(users => {
+		dispatch(setUsersAction(users));
+	})
+	.catch(err => {
+		dispatch(push('/login'));
+	})
 }
 
-export const addUser = info => dispatch => {
-	info.id = random32bit();
-	dispatch(addUserAction(info));
-	dispatch(push('/user'));
+export const addUser = ({ fullname, email, password }) => dispatch => {
+	createUserAPI(fullname, email, password)
+	.then(user => {
+		dispatch(push('/user'));
+	})
+	.catch(err => {
+		console.error(err);
+	})
+}
+
+export const updateUser = ({ fullname, password, id }) => dispatch => {
+	updateUserAPI(fullname, password, id)
+	.then(user => {
+		dispatch(push('/user'));
+	})
+	.catch(err => {
+		console.log(err);
+	});
+}
+
+export const deleteUsers = ids => (dispatch, getState) => {
+	deleteUsersAPI(ids)
+	.then(deletedIds => {
+		dispatch(loadUsers());
+	})
+	.catch(err => {
+		console.log(err);
+	});
 }

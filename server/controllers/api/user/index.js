@@ -5,3 +5,4 @@ exports.updateInformation = require('./updateInformation');
 exports.logout = require('./logout');
 exports.getUsers = require('./getUsers');
 exports.removeUser = require('./removeUser');
+exports.removeUsers = require('./removeUsers');

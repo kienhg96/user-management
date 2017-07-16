@@ -1,4 +1,5 @@
 import Storage from '../configs/Storage';
+import adminCvt from '../utils/adminCvt';
 
 const getAdmin = () => new Promise((resolve, reject) => {
 	const url = '/api/admin';
@@ -11,10 +12,7 @@ const getAdmin = () => new Promise((resolve, reject) => {
 	}))
 	.then(response => response.json())
 	.then(response => {
-		if (response.error) {
-			return reject(response.error);
-		}
-		return resolve(response.admin);
+		resolve(adminCvt(response.admin));
 	})
 	.catch(reject)
 });

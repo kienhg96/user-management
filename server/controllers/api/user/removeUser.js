@@ -15,7 +15,7 @@ const removeUser = (req, res) => {
 		});
 	})
 	.catch(err => {
-		throw err;
+		console.error(err);				
 	})
 }
 

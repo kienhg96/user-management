@@ -53,7 +53,6 @@ class AddUser extends Component {
 					title="Add new user"
 					showPasswordField
 					buttonLabel="Add"
-					onSubmit={this.handleSubmit}
 					fullname={fullname}
 					email={email}
 					password={password}
@@ -61,6 +60,7 @@ class AddUser extends Component {
 					onEmailChange={this.handleEmail}
 					onPasswordChange={this.handlePassword}
 					onCancel={this.handleCancel}
+					onSubmit={this.handleSubmit}
 				/>
 			</div>
 		)

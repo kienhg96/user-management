@@ -29,15 +29,15 @@ const login = (req, res) => {
 				});
 			})
 			.catch(err => {
-				throw err;
+				console.error(err);
 			})
 		})
 		.catch(err => {
-			throw err;
+			console.error(err);
 		});
 	})
 	.catch(err => {
-		throw err;
+		console.error(err);
 	})
 }
 

@@ -35,16 +35,17 @@ const UserInfoForm = props => (
 			</FormControl>
 			}
 			<FormControl>
-				<TextInput label="Fullname"
-					value={props.fullname}
-					onChange={props.onFullnameChange}
-				/>
-			</FormControl>
-			<FormControl>
 				<TextInput label="Email"
 					value={props.email}
 					onChange={props.onEmailChange}
 					type="email"
+					disabled={props.emailReadOnly}
+				/>
+			</FormControl>
+			<FormControl>
+				<TextInput label="Fullname"
+					value={props.fullname}
+					onChange={props.onFullnameChange}
 				/>
 			</FormControl>
 			{props.showPasswordField &&
