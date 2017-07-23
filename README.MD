@@ -14,8 +14,11 @@ It will export `build` folder inside `admin` folder.
 
 #### `client`
 An Android/iOS application for client.
+
 Change value of the first line of `client/src/constants/values.js` `(export const origin = ...)` by the hostname of server. For example, `http://192.168.1.106:8080`
+
 Following https://docs.expo.io/versions/v15.0.0/guides/building-standalone-apps.html to build mobile applications.
+
 Or you can run in development mode by using follow commands:
 ```bash
     cd client
@@ -41,6 +44,7 @@ Then do 3 steps bellow.
     REDIS_DB - Enter the db name of redis
 ```
 Leave the fields blank to get the default value.
+
 You can manually edit `.env` file. 
 ##### Step 2: Create Admin account
 ```bash
