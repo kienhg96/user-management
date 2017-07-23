@@ -14,7 +14,7 @@ class EnhancedTable extends Component {
 		super(props);
 		this.state = {
 			order: 'asc',
-			orderBy: 'fullname',
+			orderBy: '',
 			selected: [],
 			cofirmDialog: false
 		}
