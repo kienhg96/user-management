@@ -1,3 +1,3 @@
 export const responsiveWidth = 768;
 export const TOKEN_KEY = 'TOKEN_KEY';
-export const origin = 'http://127.0.0.1:8080';
+export const USER_LIMIT_PAGE = 15;

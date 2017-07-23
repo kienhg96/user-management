@@ -5,7 +5,10 @@ import './UserManagement.css';
 import { push } from 'react-router-redux';
 import AddIcon from 'material-ui-icons/Add';
 import { Button } from 'material-ui';
-import { loadUsers, deleteUsers } from '../../actions/users';
+import {
+	loadUsers, deleteUsers,
+	nextPage, prevPage
+} from '../../actions/users';
 
 class UserManagement extends Component {
 	constructor(props) {
@@ -31,8 +34,11 @@ class UserManagement extends Component {
 			<div className="UsersTableWrapper">
 				<UsersTable
 					users={this.props.users.data}
+					page={this.props.users.info}
 					onRequestEditUser={this.handleRequestEditUser}
 					onRequestDeleteUsers={this.handleDeleteUsers}
+					nextPage={this.props.nextPage}
+					prevPage={this.props.prevPage}
 				/>
 				<div className="AddButtonWrapper">
 					<Button fab color="accent"
@@ -51,5 +57,7 @@ export default connect(state => ({
 }), {
 	push,
 	loadUsers,
-	deleteUsers
+	deleteUsers,
+	nextPage,
+	prevPage
 })(UserManagement);

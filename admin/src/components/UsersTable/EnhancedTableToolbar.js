@@ -45,17 +45,17 @@ const EnhancedTableToolbar = (props) => {
 				</div>
 				<div className={classes.spacer} />
 				<div>
-					<IconButton>
+					<IconButton onClick={props.onPrevClick}>
 						<ArrowBackIcon />
 					</IconButton>
 				</div>
 				<div className={classes.title}>
 					<Typography type="subheading">
-						page 1 of 25
+						page {props.page.page + 1} of {props.page.total}
 					</Typography>
 				</div>
 				<div>
-					<IconButton>
+					<IconButton onClick={props.onNextClick}>
 						<ArrowForwardIcon />
 					</IconButton>
 				</div>

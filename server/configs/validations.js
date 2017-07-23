@@ -19,3 +19,7 @@ exports.adminLogin = [
 exports.removeUser = [
 	v('id', 'objectId', 'Missing or invalid id')
 ];
+
+exports.fbLogin = [
+	v('fbToken', 'string', 'Missing fbToken')
+];

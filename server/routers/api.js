@@ -17,13 +17,12 @@ router.route('/user')
 router.route('/users')
 	.get(deserializeAdmin, userCtl.getUsers)
 	.delete(deserializeAdmin, userCtl.removeUsers);
+router.get('/users/count', deserializeAdmin, userCtl.countUser);
 
 router.post('/user/login', validator(validations.login), userCtl.login);
-
 router.get('/user/logout', deserializeUser, userCtl.logout);
-
+router.post('/user/fbLogin', validator(validations.fbLogin), userCtl.fbLogin);
 router.post('/admin/login', validator(validations.adminLogin), adminCtl.login);
-
 router.get('/admin/logout', deserializeAdmin, adminCtl.logout);
 
 router.route('/admin')

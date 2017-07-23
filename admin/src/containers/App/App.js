@@ -10,10 +10,12 @@ import { MuiThemeProvider } from 'material-ui/styles';
 import { connect } from 'react-redux';
 import { getAdmin } from '../../actions/admin';
 import Message from '../Message';
+import Loading from '../Loading';
 
 const App = () => (
 	<div>
 		<Message />
+		<Loading />
 		<Switch>
 			<Route exact path="/login" component={Login} />
 			<Route path="*" component={Dash} />

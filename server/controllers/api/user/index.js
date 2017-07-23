@@ -6,3 +6,5 @@ exports.logout = require('./logout');
 exports.getUsers = require('./getUsers');
 exports.removeUser = require('./removeUser');
 exports.removeUsers = require('./removeUsers');
+exports.countUser = require('./countUser');
+exports.fbLogin = require('./fbLogin');

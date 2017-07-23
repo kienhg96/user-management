@@ -1,4 +1,8 @@
-import { SET_USERS } from '../constants/actionTypes';
+import {
+	SET_USERS,
+	SET_PAGE,
+	SET_TOTAL_PAGE
+} from '../constants/actionTypes';
 import { combineReducers } from 'redux';
 
 const data = (state = [], action) => {
@@ -10,8 +14,18 @@ const data = (state = [], action) => {
 	}
 }
 
-const info = (state = { page: 0 }, action) => {
+const info = (state = { page: 0, total: 5 }, action) => {
 	switch (action.type) {
+		case SET_PAGE:
+			return {
+				...state,
+				page: action.page
+			};
+		case SET_TOTAL_PAGE:
+			return {
+				...state,
+				total: action.total
+			};
 		default:
 			return state;
 	}

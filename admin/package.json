@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "history": "^4.6.3",
+    "lodash": "^4.17.4",
     "material-ui": "^1.0.0-alpha.20",
     "material-ui-icons": "^1.0.0-alpha.19",
     "react": "^15.6.1",
@@ -11,6 +12,7 @@
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^5.0.0-alpha.6",
+    "react-transition-group": "^1.2.0",
     "redux": "^3.7.1",
     "redux-thunk": "^2.2.0"
   },

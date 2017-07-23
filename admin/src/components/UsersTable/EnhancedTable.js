@@ -109,10 +109,13 @@ class EnhancedTable extends Component {
 				/>
 				<Paper>
 					<EnhancedTableToolbar
+						page={this.props.page}
 						numSelected={selected.length}
 						onDeleteClick={this.handleDeleteClick}
 						onDeselectClick={this.handleDeselectClick}
 						onEditClick={this.handleEditClick}
+						onNextClick={this.props.nextPage}
+						onPrevClick={this.props.prevPage}
 					/>
 					<Table>
 						<EnhancedTableHead

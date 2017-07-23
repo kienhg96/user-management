@@ -12,10 +12,8 @@ const UserSchema = Schema({
 		required: true,
 		unique: true
 	},
-	password: {
-		type: String,
-		required: true
-	}
+	password: String,
+	fbId: String
 });
 
 const User = mongoose.model('User', UserSchema);

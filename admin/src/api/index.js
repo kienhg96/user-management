@@ -6,6 +6,7 @@ import getUser from './getUser';
 import updateUser from './updateUser';
 import adminLogout from './adminLogout';
 import deleteUsers from './deleteUsers';
+import loadTotalPage from './loadTotalPage';
 
 export const loginAPI = login;
 export const getAdminAPI = getAdmin;
@@ -15,3 +16,4 @@ export const getUserAPI = getUser;
 export const updateUserAPI = updateUser;
 export const adminLogoutAPI = adminLogout;
 export const deleteUsersAPI = deleteUsers;
+export const loadTotalPageAPI = loadTotalPage;

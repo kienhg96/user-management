@@ -1,9 +1,8 @@
-import Storage from '../configs/Storage';
-import userCvt from '../utils/userCvt';
 import { USER_LIMIT_PAGE } from '../constants/values';
+import Storage from '../configs/Storage';
 
-const loadUsers = (page = 0, limit = USER_LIMIT_PAGE) => new Promise((resolve, reject) => {
-	const url = `/api/users?page=${page}&limit=${limit}`;
+const loadTotalPage = () => new Promise((resolve, reject) => {
+	const url = '/api/users/count';
 	Storage.getToken()
 	.then(token => fetch(url, {
 		method: 'GET',
@@ -16,9 +15,9 @@ const loadUsers = (page = 0, limit = USER_LIMIT_PAGE) => new Promise((resolve, r
 		if (response.error) {
 			return reject(response.error);
 		}
-		return resolve(userCvt(response.users));
+		return resolve(Math.ceil(response.count / USER_LIMIT_PAGE));
 	})
 	.catch(reject);
 });
 
-export default loadUsers;
+export default loadTotalPage;

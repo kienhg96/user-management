@@ -1,0 +1,30 @@
+.loadingContainer {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(255, 255, 255, 0.3);
+	z-index: 1500;
+}
+
+.loading-enter {
+  opacity: 0.01;
+}
+
+.loading-enter.loading-enter-active {
+  opacity: 1;
+  transition: opacity 0.2s ease-in;
+}
+
+.loading-leave {
+  opacity: 1;
+}
+
+.loading-leave.loading-leave-active {
+  opacity: 0.01;
+  transition: opacity 0.2s ease-in;
+}

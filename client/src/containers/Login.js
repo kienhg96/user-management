@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity,
-		Image, Dimensions } from 'react-native';
+		Image, Dimensions, alert } from 'react-native';
 import { connect } from 'react-redux';
 import Input from '../components/Input';
 import FormContent from '../components/FormContent';
 import Container from '../components/Container';
-import { login, getUser } from '../actions/user';
+import { login, getUser, fbLogin } from '../actions/user';
 
 class Login extends Component {
 	static navigationOptions() {
@@ -23,6 +23,11 @@ class Login extends Component {
 		this.handleUsernameChange = this.handleUsernameChange.bind(this);
 		this.handlePasswordChange = this.handlePasswordChange.bind(this);
 		this.handleLoginClick = this.handleLoginClick.bind(this);
+		this.handleFacebookLoginClick = this.handleFacebookLoginClick.bind(this);
+	}
+
+	handleFacebookLoginClick() {
+		this.props.fbLogin();
 	}
 
 	handleUsernameChange(email) {
@@ -74,6 +79,12 @@ class Login extends Component {
 						/>
 					</FormContent>
 					<FormContent>
+						<Button title="Login with facebook" 
+							color="#841584" 
+							onPress={this.handleFacebookLoginClick}
+						/>
+					</FormContent>
+					<FormContent>
 						<TouchableOpacity onPress={() => {
 							this.props.navigation.navigate('Signup');
 						}}>
@@ -100,5 +111,6 @@ const style = StyleSheet.create({
 
 export default connect(state => ({}), {
 	login,
-	getUser
+	getUser,
+	fbLogin
 })(Login);

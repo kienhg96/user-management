@@ -19,7 +19,7 @@ class Input extends Component {
 
 const style = StyleSheet.create({
 	input: {
-		paddingVertical: 10,
+		height: 45,
 		paddingHorizontal: 15,
 		backgroundColor: '#fff',
 		borderRadius: 3

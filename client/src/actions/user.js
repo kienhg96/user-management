@@ -5,7 +5,9 @@ import {
 	getUserAPI,
 	updateUserAPI,
 	logoutAPI,
-	signupAPI
+	signupAPI,
+	fbLoginServerAPI,
+	fbRequestPermissionsAPI
 } from '../api';
 import alert from '../utils/alert';
 
@@ -64,7 +66,7 @@ export const getUser = () => dispatch => {
 		}
 	})
 	.catch(error => {
-		console.error(error);
+		console.log(error);
 	});
 }
 
@@ -107,4 +109,30 @@ export const signup = ({ email, fullname, password }) => dispatch => {
 		console.log(error);
 		alert('Signup failed', 'Email already exists');
 	});
+}
+
+export const fbLogin = () => dispatch => {
+	fbRequestPermissionsAPI()
+	.then(({type, token}) => {
+		if (type === 'success') {
+			fbLoginServerAPI(token)
+			.then(user => {
+				dispatch(setUserAction(user));
+				dispatch(reset({
+					index: 0,
+					actions: [
+						navigate({ routeName: 'Home' })
+					]
+				}));
+			})
+			.catch(err => {
+				console.error(err);
+			});
+		} else {
+			alert('Facebook Login', 'Login failed');
+		}
+	})
+	.catch(err => {
+		console.error(err);
+	})
 }
