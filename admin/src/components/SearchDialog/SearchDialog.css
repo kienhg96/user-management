@@ -1,0 +1,16 @@
+.searchInputWrapper {
+	padding-left: 24px;
+	padding-right: 24px;
+}
+
+@media screen and (min-width: 400px) {
+	.searchInputWrapper {
+		width: 350px;
+	}
+}
+
+@media screen and (max-width: 399px) {
+	.searchInputWrapper {
+		width: 80vw;
+	}
+}

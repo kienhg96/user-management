@@ -23,3 +23,7 @@ exports.removeUser = [
 exports.fbLogin = [
 	v('fbToken', 'string', 'Missing fbToken')
 ];
+
+exports.search = [
+	v('query', 'string', 'Missing query')
+];

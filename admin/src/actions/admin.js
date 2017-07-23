@@ -10,7 +10,7 @@ const setAdminAction = admin => ({
 	admin
 });
 
-const resetAdminAction = () => ({
+export const resetAdminAction = () => ({
 	type: RESET_ADMIN
 });
 

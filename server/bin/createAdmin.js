@@ -1,3 +1,4 @@
+global.rootPrefix = process.cwd();
 require('dotenv').load();
 process.env.INIT = true;
 const readline = require('../utils/readline');

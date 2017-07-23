@@ -9,7 +9,8 @@ import {
 	Delete as DeleteIcon,
 	ModeEdit as ModeEditIcon,
 	SelectAll as SelectAllIcon,
-	Search as SearchIcon
+	Search as SearchIcon,
+	Clear as ClearIcon
 } from 'material-ui-icons';
 
 const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', {
@@ -34,38 +35,65 @@ const toolbarStyleSheet = createStyleSheet('EnhancedTableToolbar', {
 const EnhancedTableToolbar = (props) => {
 	const { numSelected, classes, onDeleteClick, onDeselectClick, onEditClick } = props;
 	if (numSelected === 0) {
-		return (
-			<Toolbar
-				className={classNames(classes.root, {
-					[classes.highlight]: numSelected > 0,
-				})}
-			>
-				<div className={classes.title}>
-					<Typography type="title">User</Typography>
-				</div>
-				<div className={classes.spacer} />
-				<div>
-					<IconButton onClick={props.onPrevClick}>
-						<ArrowBackIcon />
-					</IconButton>
-				</div>
-				<div className={classes.title}>
-					<Typography type="subheading">
-						page {props.page.page + 1} of {props.page.total}
-					</Typography>
-				</div>
-				<div>
-					<IconButton onClick={props.onNextClick}>
-						<ArrowForwardIcon />
-					</IconButton>
-				</div>
-				<div>
-					<IconButton>
-						<SearchIcon />
-					</IconButton>
-				</div>
-			</Toolbar>
-		);
+		if (props.info.searching) {
+			return (
+				<Toolbar
+					className={classNames(classes.root, {
+						[classes.highlight]: numSelected > 0,
+					})}
+				>
+					<div className={classes.title}>
+						<Typography type="subheading">
+							Result for '<b>{props.info.query}</b>'
+						</Typography>
+					</div>
+					<div className={classes.spacer} />
+					<div>
+						<IconButton onClick={props.onSearchClick}>
+							<SearchIcon />
+						</IconButton>
+					</div>
+					<div>
+						<IconButton onClick={props.onSearchRemoveClick}>
+							<ClearIcon />
+						</IconButton>
+					</div>
+				</Toolbar>
+			)
+		} else {
+			return (
+				<Toolbar
+					className={classNames(classes.root, {
+						[classes.highlight]: numSelected > 0,
+					})}
+				>
+					<div className={classes.title}>
+						<Typography type="title">User</Typography>
+					</div>
+					<div className={classes.spacer} />
+					<div>
+						<IconButton onClick={props.onPrevClick}>
+							<ArrowBackIcon />
+						</IconButton>
+					</div>
+					<div className={classes.title}>
+						<Typography type="subheading">
+							page {props.info.page + 1} of {props.info.total}
+						</Typography>
+					</div>
+					<div>
+						<IconButton onClick={props.onNextClick}>
+							<ArrowForwardIcon />
+						</IconButton>
+					</div>
+					<div>
+						<IconButton onClick={props.onSearchClick}>
+							<SearchIcon />
+						</IconButton>
+					</div>
+				</Toolbar>
+			);
+		}
 	} else {
 		return (
 			<Toolbar

@@ -16,5 +16,10 @@ const UserSchema = Schema({
 	fbId: String
 });
 
+UserSchema.index({
+	fullname: 'text',
+	email: 'text'
+});
+
 const User = mongoose.model('User', UserSchema);
 module.exports = User;

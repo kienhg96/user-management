@@ -7,3 +7,5 @@ export const CLOSE_MESSAGE = 'CLOSE_MESSAGE';
 export const SET_LOADING = 'SET_LOADING';
 export const SET_PAGE = 'SET_PAGE';
 export const SET_TOTAL_PAGE = 'SET_TOTAL_PAGE';
+export const SET_SEARCHING = 'SET_SEARCHING';
+export const SET_SEARCH_QUERY = 'SET_SEARCH_QUERY';

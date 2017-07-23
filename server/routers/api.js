@@ -19,6 +19,7 @@ router.route('/users')
 	.delete(deserializeAdmin, userCtl.removeUsers);
 router.get('/users/count', deserializeAdmin, userCtl.countUser);
 
+router.get('/user/search', deserializeAdmin, validator(validations.search, 'query'), userCtl.search);
 router.post('/user/login', validator(validations.login), userCtl.login);
 router.get('/user/logout', deserializeUser, userCtl.logout);
 router.post('/user/fbLogin', validator(validations.fbLogin), userCtl.fbLogin);

@@ -1,7 +1,9 @@
 import {
 	SET_USERS,
 	SET_PAGE,
-	SET_TOTAL_PAGE
+	SET_TOTAL_PAGE,
+	SET_SEARCHING,
+	SET_SEARCH_QUERY
 } from '../constants/actionTypes';
 import { push } from 'react-router-redux';
 import {
@@ -9,10 +11,12 @@ import {
 	loadUsersAPI,
 	updateUserAPI,
 	deleteUsersAPI,
-	loadTotalPageAPI
+	loadTotalPageAPI,
+	searchAPI
 } from '../api';
 import { showMessage } from './message';
 import { setLoading } from './loading';
+import { resetAdminAction } from './admin';
 
 const setUsersAction = users => ({
 	type: SET_USERS,
@@ -27,6 +31,16 @@ const setPageAction = page => ({
 const setTotalPageAction = total => ({
 	type: SET_TOTAL_PAGE,
 	total
+});
+
+const setSearchingAction = searching => ({
+	type: SET_SEARCHING,
+	searching
+});
+
+const setSearchQueryAction = query => ({
+	type: SET_SEARCH_QUERY,
+	query
 });
 
 export const loadTotalPage = () => dispatch => {
@@ -57,7 +71,12 @@ export const prevPage = () => (dispatch, getState) => {
 
 export const loadUsers = page => (dispatch, getState) => {
 	dispatch(setLoading(true));
-	if (!page) {
+	if (getState().users.info.searching) {
+		dispatch(setPageAction(0));
+		dispatch(setSearchQueryAction(''));
+		dispatch(setSearchingAction(false));
+	}
+	if (isNaN(page)) {
 		page = getState().users.info.page;
 	}
 	loadUsersAPI(page)
@@ -68,6 +87,7 @@ export const loadUsers = page => (dispatch, getState) => {
 	.catch(err => {
 		dispatch(setLoading(false));
 		dispatch(showMessage('An error occurs'));
+		dispatch(resetAdminAction());
 		dispatch(push('/login'));
 	});
 }
@@ -115,4 +135,31 @@ export const deleteUsers = ids => (dispatch, getState) => {
 		dispatch(showMessage('An error occurs'));
 		console.log(err);
 	});
+}
+
+export const search = (query, page) => (dispatch, getState) => {
+	dispatch(setLoading(true));
+	if (!getState().users.info.searching) {
+		dispatch(setPageAction(0));
+		dispatch(setSearchQueryAction(query));
+		dispatch(setSearchingAction(true));
+	}
+	searchAPI(query, page)
+	.then(users => {
+		dispatch(setLoading(false));
+		dispatch(setUsersAction(users));
+	})
+	.catch(err => {
+		dispatch(setLoading(false));
+		dispatch(showMessage('An error occurs'));
+		dispatch(resetAdminAction());
+		dispatch(push('/login'));
+	});
+}
+
+export const removeSearch = () => (dispatch) => {
+	dispatch(setPageAction(0));
+	dispatch(setSearchingAction(false));
+	dispatch(loadTotalPage());
+	dispatch(loadUsers());
 }

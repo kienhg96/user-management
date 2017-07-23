@@ -3,8 +3,8 @@ const User = require(`${rootPrefix}/models/User`);
 
 const getUsers = (page, limit) => new Promise((resolve, reject) => {
 	User.find()
-		.limit(limit)
 		.skip(page * limit)
+		.limit(limit)
 		.exec((err, users) => {
 			if (err) {
 				return reject(err);
